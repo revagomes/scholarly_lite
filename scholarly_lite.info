@@ -42,4 +42,5 @@ settings[slogan_font_family]= 'slff-7'
 settings[responsive_multilevelmenu_state]= 1
 settings[bootstrap_css_cdn]= 3.2.0
 settings[bootstrap_js_cdn]= 3.2.0
+settings[bootstrap_fa_cdn]= 4.2.0
 settings[credits_display]= 1

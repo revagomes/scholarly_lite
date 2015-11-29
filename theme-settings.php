@@ -97,6 +97,7 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
         '#title' => t('BootstrapCDN Complete CSS version'),
         '#options' => drupal_map_assoc(array(
           '3.2.0',
+          '3.3.6',
         )),
         '#default_value' => theme_get_setting('bootstrap_css_cdn'),
         '#empty_option' => t('Disabled'),
@@ -108,8 +109,21 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
         '#title' => t('BootstrapCDN Complete JavaScript version'),
         '#options' => drupal_map_assoc(array(
           '3.2.0',
+          '3.3.6',
         )),
         '#default_value' => theme_get_setting('bootstrap_js_cdn'),
+        '#empty_option' => t('Disabled'),
+        '#empty_value' => NULL,
+    );
+
+    $form['mtt_settings']['tabs']['bootstrap_cdn']['bootstrap_fa_cdn'] = array(
+        '#type' => 'select',
+        '#title' => t('BootstrapCDN Complete Font Awesome version'),
+        '#options' => drupal_map_assoc(array(
+          '4.2.0',
+          '4.5.0',
+        )),
+        '#default_value' => theme_get_setting('bootstrap_fa_cdn'),
         '#empty_option' => t('Disabled'),
         '#empty_value' => NULL,
     );

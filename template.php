@@ -244,8 +244,6 @@ function scholarly_lite_preprocess_html(&$variables) {
 	
 	drupal_add_css(path_to_theme() . '/fonts/ptserif-blockquote-font.css', array('group' => CSS_THEME, 'type' => 'file' , 'preprocess' => FALSE));
 
-    drupal_add_css('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', array('type' => 'external'));
-
 	drupal_add_css(path_to_theme() . '/ie9.css', array('group' => CSS_THEME, 'browsers' => array('IE' => '(IE 9)&(!IEMobile)', '!IE' => FALSE), 'preprocess' => FALSE));
     
 	/**
@@ -265,7 +263,12 @@ function scholarly_lite_preprocess_html(&$variables) {
         $cdn = '//maxcdn.bootstrapcdn.com/bootstrap/' . theme_get_setting('bootstrap_js_cdn', 'scholarly_lite')  . '/js/bootstrap.min.js';
         drupal_add_js($cdn, array('type' => 'external'));
     }
-	
+
+    if (theme_get_setting('bootstrap_fa_cdn', 'scholarly_lite')) {
+        $cdn = '//maxcdn.bootstrapcdn.com/font-awesome/' . theme_get_setting('bootstrap_fa_cdn', 'scholarly_lite')  . '/css/font-awesome.min.css';
+        drupal_add_css($cdn, array('type' => 'external'));
+    }
+
 	/**
 	 * Add Javascript for enable/disable scrollTop action.
 	 */
