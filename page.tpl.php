@@ -112,6 +112,28 @@
 </header>
 <!-- EOF: #header -->
 
+<!-- # Breadcrumb -->
+<?php if ($breadcrumb && theme_get_setting("breadcrumb_display")) :?>
+
+<div id="page-intro" class="clearfix">
+    <div id="page-intro-inside" class="clearfix internal-banner no-internal-banner-image">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="breadcrumb" class="clearfix">
+                        <div id="breadcrumb-inside" class="clearfix">
+                        <?php print $breadcrumb; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php endif; ?>
+<!-- EOF:#Breadcrumb -->
+
 <?php if ($page['banner']) : ?>
 <!-- #banner -->
 <div id="banner" class="clearfix">
