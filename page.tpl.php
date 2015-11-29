@@ -45,7 +45,7 @@
 <?php endif; ?>
 
 <!-- #header -->
-<header id="header"  role="banner" class="clearfix">
+<header id="header" class="clearfix">
     <div class="container">
         
         <!-- #header-inside -->
@@ -88,7 +88,7 @@
 
                         <!-- #main-navigation -->
                         <div id="main-navigation" class="clearfix">
-                            <nav role="navigation"> 
+                            <nav>
                                 <?php if ($page['navigation']) :?>
                                 <?php print render($page['navigation']); ?>
                                 <?php else : ?>
