@@ -99,6 +99,7 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
           '3.2.0',
         )),
         '#default_value' => theme_get_setting('bootstrap_css_cdn'),
+        '#empty_option' => t('Disabled'),
         '#empty_value' => NULL,
     );
 
@@ -354,14 +355,14 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     '#type' => 'fieldset',
     '#title' => t('Credits'),
     '#collapsible' => TRUE,
-	'#collapsed' => FALSE,
+	  '#collapsed' => FALSE,
   );
   
   $form['mtt_settings']['tabs']['credits']['credits_display'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show credits'),
   	'#description'   => t('Use the checkbox to enable or disable credits.'),
-	'#default_value' => theme_get_setting('credits_display'),
+	  '#default_value' => theme_get_setting('credits_display'),
   );
   
     
