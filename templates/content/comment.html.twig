@@ -1,5 +1,4 @@
-<?php
-
+{#
 /**
  * @file
  * Default theme implementation for comments.
@@ -58,38 +57,36 @@
  *
  * @ingroup themeable
  */
-?>
-<article class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-
+#}
+<article class="{{ classes }} clearfix" {{ attributes }}>
     <header>
-        <?php print $picture; ?>
+        {{ user_picture }}
     </header>
-
-    <div class="content"<?php print $content_attributes; ?>>
-    
-    <?php if ($new): ?>
-    <span class="new"><?php print $new ?></span>
-    <?php endif; ?>
-    
-    <?php print render($title_prefix); ?>
-    <h3<?php print $title_attributes; ?> class="title"><?php print $title ?></h3>
-    <?php print render($title_suffix); ?>
-    
-    <div class="submitted">
-    <?php print $submitted; ?>
+    <div class="content" {{ content_attributes }}>
+    {% if new %}
+      <span class="new"> {{ new }} </span>
+    {% endif %}
+    {% if title %}
+      {{ $title_prefix }}
+      <h3 {{ $title_attributes }} class="title">{{ title }}</h3>
+      {{ $title_suffix }}
+    {% endif %}
+    {% if submitted %}
+      <div class="submitted">
+      {{ submitted }}
+      </div>
+    {% endif %}
+    {#
+      We hide the comments and links now so that we can render them later.
+    #}
+    {{ content|without('links') }}
+    {{ if signature }}
+      <div class="user-signature clearfix">
+        {{ signature }}
+      </div>
+    {% endif %}
+    {% if content.links %}
+      <nav>{{ content.links }}</nav>
+    {% endif %}
     </div>
-    
-    <?php
-      // We hide the comments and links now so that we can render them later.
-      hide($content['links']);
-      print render($content);
-    ?>
-    <?php if ($signature): ?>
-    <div class="user-signature clearfix">
-      <?php print $signature ?>
-    </div>
-    <?php endif; ?>
-    <?php print render($content['links']) ?>
-    </div>
-
 </article>

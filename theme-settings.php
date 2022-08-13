@@ -1,13 +1,23 @@
 <?php
+
+/**
+ * @file
+ * Theme Settings form.
+ */
+
 /**
  * Implements hook_form_FORM_ID_alter().
- *
- * @param $form
- *   The form.
- * @param $form_state
- *   The form state.
  */
-function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
+function scholarly_lite_form_system_theme_settings_alter(&$form, $form_state, $form_id = NULL) {
+  // General "alters" use a form id. Settings should not be set here. The only
+  // thing useful about this is if you need to alter the form for the running
+  // theme and *not* the theme setting.
+  // @see http://drupal.org/node/943212
+  if (isset($form_id)) {
+    return;
+  }
+
+  $form['#attached']['library'] = 'settings.form';
 
   $form['mtt_settings'] = array(
     '#type' => 'fieldset',
@@ -16,26 +26,26 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     '#collapsed' => FALSE,
   );
 
-  $form['mtt_settings']['tabs'] = array(
+  // Vertical tabs.
+  $form['mtt_settings'] = array(
     '#type' => 'vertical_tabs',
-    '#attached' => array(
-      'css' => array(drupal_get_path('theme', 'scholarly_lite') . '/scholarly_lite.settings.form.css'),
-    ),
+    '#prefix' => '<h2><small>' . t('Scholarly lite settings') . '</small></h2>',
   );
-  
-  $form['mtt_settings']['tabs']['basic_settings'] = array(
-    '#type' => 'fieldset',
+
+  $form['basic_settings'] = array(
+    '#type' => 'details',
     '#title' => t('Basic Settings'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#group' => 'mtt_settings',
   );
-  
-  $form['mtt_settings']['tabs']['basic_settings']['breadcrumb'] = array(
+
+  $form['basic_settings']['breadcrumb'] = array(
     '#type' => 'item',
     '#markup' => t('<div class="theme-settings-title">Breadcrumb</div>'),
   );
 
-  $form['mtt_settings']['tabs']['basic_settings']['breadcrumb_display'] = array(
+  $form['basic_settings']['breadcrumb_display'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show breadcrumb'),
     '#description'   => t('Use the checkbox to enable or disable Breadcrumb.'),
@@ -44,26 +54,26 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     '#collapsed' => TRUE,
   );
 
-  $form['mtt_settings']['tabs']['basic_settings']['header'] = array(
+  $form['basic_settings']['header'] = array(
    '#type' => 'item',
    '#markup' => t('<div class="theme-settings-title">Header positioning</div>'),
   );
-  
-  $form['mtt_settings']['tabs']['basic_settings']['fixed_header'] = array(
+
+  $form['basic_settings']['fixed_header'] = array(
     '#type' => 'checkbox',
     '#title' => t('Fixed position'),
     '#description'   => t('Use the checkbox to apply fixed position to the header.'),
     '#default_value' => theme_get_setting('fixed_header'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-  ); 
-  
-  $form['mtt_settings']['tabs']['basic_settings']['scrolltop'] = array(
+  );
+
+  $form['basic_settings']['scrolltop'] = array(
     '#type' => 'item',
     '#markup' => t('<div class="theme-settings-title">Scroll to top</div>'),
   );
-  
-  $form['mtt_settings']['tabs']['basic_settings']['scrolltop_display'] = array(
+
+  $form['basic_settings']['scrolltop_display'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show scroll-to-top button'),
     '#description'   => t('Use the checkbox to enable or disable scroll-to-top button.'),
@@ -71,74 +81,75 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  
-  $form['mtt_settings']['tabs']['basic_settings']['frontpage_content'] = array(
+
+  $form['basic_settings']['frontpage_content'] = array(
     '#type' => 'item',
     '#markup' => t('<div class="theme-settings-title">Front Page Behavior</div>'),
   );
-  
-  $form['mtt_settings']['tabs']['basic_settings']['frontpage_content_print'] = array(
+
+  $form['basic_settings']['frontpage_content_print'] = array(
     '#type' => 'checkbox',
     '#title' => t('Drupal frontpage content'),
     '#description'   => t('Use the checkbox to enable or disable the Drupal default frontpage functionality. Enable this to have all the promoted content displayed in the frontpage.'),
     '#default_value' => theme_get_setting('frontpage_content_print'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-  );  
+  );
 
-    $form['mtt_settings']['tabs']['bootstrap_cdn'] = array(
-        '#type' => 'fieldset',
-        '#title' => t('BootstrapCDN'),
-        '#group' => 'bootstrap',
+    $form['bootstrap_cdn'] = array(
+      '#type' => 'details',
+      '#title' => t('BootstrapCDN'),
+      '#group' => 'mtt_settings',
     );
 
-    $form['mtt_settings']['tabs']['bootstrap_cdn']['bootstrap_css_cdn'] = array(
+    $form['bootstrap_cdn']['bootstrap_css_cdn'] = array(
         '#type' => 'select',
         '#title' => t('BootstrapCDN Complete CSS version'),
-        '#options' => drupal_map_assoc(array(
-          '3.2.0',
-          '3.3.6',
-        )),
+        '#options' => array(
+          '3.2.0' => '3.2.0',
+          '3.3.6' => '3.3.6',
+        ),
         '#default_value' => theme_get_setting('bootstrap_css_cdn'),
         '#empty_option' => t('Disabled'),
         '#empty_value' => NULL,
     );
 
-    $form['mtt_settings']['tabs']['bootstrap_cdn']['bootstrap_js_cdn'] = array(
+    $form['bootstrap_cdn']['bootstrap_js_cdn'] = array(
         '#type' => 'select',
         '#title' => t('BootstrapCDN Complete JavaScript version'),
-        '#options' => drupal_map_assoc(array(
-          '3.2.0',
-          '3.3.6',
-        )),
+        '#options' => array(
+          '3.2.0' => '3.2.0',
+          '3.3.6' => '3.3.6',
+        ),
         '#default_value' => theme_get_setting('bootstrap_js_cdn'),
         '#empty_option' => t('Disabled'),
         '#empty_value' => NULL,
     );
 
-    $form['mtt_settings']['tabs']['bootstrap_cdn']['bootstrap_fa_cdn'] = array(
+    $form['bootstrap_cdn']['bootstrap_fa_cdn'] = array(
         '#type' => 'select',
         '#title' => t('BootstrapCDN Complete Font Awesome version'),
-        '#options' => drupal_map_assoc(array(
-          '4.2.0',
-          '4.5.0',
-        )),
+        '#options' => array(
+          '4.2.0' => '4.2.0',
+          '4.5.0' => '4.5.0',
+        ),
         '#default_value' => theme_get_setting('bootstrap_fa_cdn'),
         '#empty_option' => t('Disabled'),
         '#empty_value' => NULL,
     );
 
-  $form['mtt_settings']['tabs']['layout'] = array(
-    '#type' => 'fieldset',
+  $form['layout'] = array(
+    '#type' => 'details',
     '#title' => t('Layout'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#group' => 'mtt_settings',
   );
 
-  $form['mtt_settings']['tabs']['layout']['three_columns_grid_layout'] = array(
+  $form['layout']['three_columns_grid_layout'] = array(
     '#type' => 'select',
     '#title' => t('Adjustments to the three-column, Bootstrap layout grid'),
-    '#description'   => t('From the drop-down menu, select the grid of the three-column layout you would like to use. This way, you can set the width of each of your columns, when choosing a three-column layout. 
+    '#description'   => t('From the drop-down menu, select the grid of the three-column layout you would like to use. This way, you can set the width of each of your columns, when choosing a three-column layout.
     <br><br>Note: All options refer to Bootstrap columns.'),
     '#default_value' => theme_get_setting('three_columns_grid_layout'),
     '#options' => array(
@@ -148,14 +159,15 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     ),
   );
 
-  $form['mtt_settings']['tabs']['looknfeel'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Look\'n\'Feel'),
+  $form['looknfeel'] = array(
+    '#type' => 'details',
+    '#title' => t("Look'n'Feel"),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#group' => 'mtt_settings',
   );
-  
-  $form['mtt_settings']['tabs']['looknfeel']['color_scheme'] = array(
+
+  $form['looknfeel']['color_scheme'] = array(
     '#type' => 'select',
     '#title' => t('Color Schemes'),
     '#description'   => t('From the drop-down menu, select the color scheme you prefer.'),
@@ -169,26 +181,27 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     'gray-purple' => t('Gray Purple'),
     'blue' => t('Blue'),
     'green' => t('Green'),
-    'orange' => t('Orange'),    
-    'red' => t('Red'),    
-    'pink' => t('Pink'),    
+    'orange' => t('Orange'),
+    'red' => t('Red'),
+    'pink' => t('Pink'),
     'purple' => t('Purple'),
     ),
   );
 
-  $form['mtt_settings']['tabs']['font'] = array(
-    '#type' => 'fieldset',
+  $form['font'] = array(
+    '#type' => 'details',
     '#title' => t('Font Settings'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#group' => 'mtt_settings',
   );
-  
-  $form['mtt_settings']['tabs']['font']['font_title'] = array(
+
+  $form['font']['font_title'] = array(
     '#type' => 'item',
     '#markup' => 'For every region pick the <strong>font-family</strong> that corresponds to your needs.',
   );
-  
-  $form['mtt_settings']['tabs']['font']['sitename_font_family'] = array(
+
+  $form['font']['sitename_font_family'] = array(
     '#type' => 'select',
     '#title' => t('Site name'),
     '#default_value' => theme_get_setting('sitename_font_family'),
@@ -208,8 +221,8 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
       'sff-13' => t('Georgia, Times, Serif'),
       'sff-14' => t('Playfair Display, Times, Serif'),
       'sff-15' => t('Philosopher, Georgia, Times, Serif'),
-      'sff-16' => t('Cinzel, Georgia, Times, Serif'),               
-      'sff-17' => t('Oswald, Helvetica Neue, Arial, Sans-serif'),    
+      'sff-16' => t('Cinzel, Georgia, Times, Serif'),
+      'sff-17' => t('Oswald, Helvetica Neue, Arial, Sans-serif'),
       'sff-18' => t('Playfair Display SC, Georgia, Times, Serif'),
       'sff-19' => t('Cabin, Helvetica Neue, Arial, Sans-serif'),
       'sff-20' => t('Noto Sans, Arial, Helvetica Neue, Sans-serif;'),
@@ -228,8 +241,8 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     '#empty_option' => t('Disabled'),
     '#empty_value' => NULL,
   );
-  
-  $form['mtt_settings']['tabs']['font']['slogan_font_family'] = array(
+
+  $form['font']['slogan_font_family'] = array(
     '#type' => 'select',
     '#title' => t('Slogan'),
     '#default_value' => theme_get_setting('slogan_font_family'),
@@ -249,8 +262,8 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
       'slff-13' => t('Georgia, Times, Serif'),
       'slff-14' => t('Playfair Display, Times, Serif'),
       'slff-15' => t('Philosopher, Georgia, Times, Serif'),
-      'slff-16' => t('Cinzel, Georgia, Times, Serif'),               
-      'slff-17' => t('Oswald, Helvetica Neue, Arial, Sans-serif'),    
+      'slff-16' => t('Cinzel, Georgia, Times, Serif'),
+      'slff-17' => t('Oswald, Helvetica Neue, Arial, Sans-serif'),
       'slff-18' => t('Playfair Display SC, Georgia, Times, Serif'),
       'slff-19' => t('Cabin, Helvetica Neue, Arial, Sans-serif'),
       'slff-20' => t('Noto Sans, Arial, Helvetica Neue, Sans-serif;'),
@@ -269,8 +282,8 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     '#empty_option' => t('Disabled'),
     '#empty_value' => NULL,
   );
-  
-  $form['mtt_settings']['tabs']['font']['headings_font_family'] = array(
+
+  $form['font']['headings_font_family'] = array(
     '#type' => 'select',
     '#title' => t('Headings'),
     '#default_value' => theme_get_setting('headings_font_family'),
@@ -290,8 +303,8 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
       'hff-13' => t('Georgia, Times, Serif'),
       'hff-14' => t('Playfair Display, Times, Serif'),
       'hff-15' => t('Philosopher, Georgia, Times, Serif'),
-      'hff-16' => t('Cinzel, Georgia, Times, Serif'),               
-      'hff-17' => t('Oswald, Helvetica Neue, Arial, Sans-serif'),    
+      'hff-16' => t('Cinzel, Georgia, Times, Serif'),
+      'hff-17' => t('Oswald, Helvetica Neue, Arial, Sans-serif'),
       'hff-18' => t('Playfair Display SC, Georgia, Times, Serif'),
       'hff-19' => t('Cabin, Helvetica Neue, Arial, Sans-serif'),
       'hff-20' => t('Noto Sans, Arial, Helvetica Neue, Sans-serif;'),
@@ -310,8 +323,8 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     '#empty_option' => t('Disabled'),
     '#empty_value' => NULL,
   );
-  
-  $form['mtt_settings']['tabs']['font']['paragraph_font_family'] = array(
+
+  $form['font']['paragraph_font_family'] = array(
     '#type' => 'select',
     '#title' => t('Paragraph'),
     '#default_value' => theme_get_setting('paragraph_font_family'),
@@ -332,7 +345,7 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
       'pff-14' => t('Playfair Display, Times, Serif'),
       'pff-15' => t('Philosopher, Georgia, Times, Serif'),
       'pff-16' => t('Cinzel, Georgia, Times, Serif'),
-      'pff-17' => t('Oswald, Helvetica Neue, Arial, Sans-serif'),    
+      'pff-17' => t('Oswald, Helvetica Neue, Arial, Sans-serif'),
       'pff-18' => t('Playfair Display SC, Georgia, Times, Serif'),
       'pff-19' => t('Cabin, Helvetica Neue, Arial, Sans-serif'),
       'pff-20' => t('Noto Sans, Arial, Helvetica Neue, Sans-serif;'),
@@ -351,41 +364,41 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     '#empty_option' => t('Disabled'),
     '#empty_value' => NULL,
   );
-  
-  $form['mtt_settings']['tabs']['responsive_menu'] = array(
-    '#type' => 'fieldset',
+
+  $form['responsive_menu'] = array(
+    '#type' => 'details',
     '#title' => t('Responsive menu'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#group' => 'mtt_settings',
   );
 
-  $form['mtt_settings']['tabs']['responsive_menu']['responsive_multiLevel_menu'] = array(
-    '#type' => 'fieldset',
+  $form['responsive_menu']['responsive_multiLevel_menu'] = array(
+    '#type' => 'details',
     '#title' => t('Responsive Multilevel Menu'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
 
-  $form['mtt_settings']['tabs']['responsive_menu']['responsive_multiLevel_menu']['responsive_multilevelmenu_state'] = array(
+  $form['responsive_menu']['responsive_multiLevel_menu']['responsive_multilevelmenu_state'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable responsive menu'),
     '#description'   => t('Use the checkbox to enable the plugin which transforms the Main menu of your site to a responsive multilevel menu when your browser is at mobile widths.'),
     '#default_value' => theme_get_setting('responsive_multilevelmenu_state'),
   );
-    
-  $form['mtt_settings']['tabs']['credits'] = array(
-    '#type' => 'fieldset',
+
+  $form['credits'] = array(
+    '#type' => 'details',
     '#title' => t('Credits'),
     '#collapsible' => TRUE,
 	  '#collapsed' => FALSE,
+    '#group' => 'mtt_settings',
   );
-  
-  $form['mtt_settings']['tabs']['credits']['credits_display'] = array(
+
+  $form['credits']['credits_display'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show credits'),
   	'#description'   => t('Use the checkbox to enable or disable credits.'),
 	  '#default_value' => theme_get_setting('credits_display'),
   );
-  
-    
 }

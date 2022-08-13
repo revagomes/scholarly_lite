@@ -1,0 +1,34 @@
+name: 'Scholarly Lite'
+type: theme
+base theme: false
+description: 'A Bootstrap-based, responsive Drupal theme by <a href="http://www.morethanthemes.com/" target="_blank">More than (just) Themes</a> and contributors.'
+screenshot: screenshot.png
+engine: twig
+core_version_requirement: ^8.7.7 || ^9.0
+
+libraries:
+  - scholarly_lite/global
+
+regions:
+  header_top_left: 'Header Top Left'
+  header_top_right: 'Header Top Right'
+  header: 'Header'
+  navigation: 'Navigation'
+  banner: 'Banner'
+  highlighted: 'Highlighted'
+  promoted: 'Promoted area'
+  content: 'Content'
+  sidebar_first: 'First sidebar'
+  sidebar_second: 'Second sidebar'
+  bottom_content: 'Bottom Content'
+  footer_top_left: 'Footer Top Left'
+  footer_top_right: 'Footer Top Right'
+  footer_first: 'Footer First'
+  footer_second: 'Footer Second'
+  footer_third: 'Footer Third'
+  footer_fourth: 'Footer Fourth'
+  sub_footer_left: 'Subfooter Left'
+  footer: 'Subfooter Right'
+  help: 'Help'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'

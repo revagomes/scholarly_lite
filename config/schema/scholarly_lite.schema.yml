@@ -1,0 +1,55 @@
+# Schema for the configuration files of the scholarly_lite theme.
+
+scholarly_lite.settings:
+  type: theme_settings
+  label: 'scholarly_lite settings'
+  mapping:
+
+  breadcrumb_display:
+    type: boolean
+    label: 'Display breadcrumb'
+  scrolltop_display:
+    type: boolean
+    label: 'Display scroll to top button'
+  frontpage_content_print:
+    type: boolean
+    label: 'Print content in front page'
+  three_columns_grid_layout:
+    type: text
+    label: 'Three columns grid layout'
+  color_scheme:
+    type: text
+    label: 'Color scheme'
+  fixed_header:
+    type: boolean
+    label: 'Fixed Header'
+  form_style:
+    type: text
+    label: 'Form Style'
+  headings_font_family:
+    type: text
+    label: 'Headings font family'
+  paragraph_font_family:
+    type: text
+    label: 'Paragraph font family'
+  sitename_font_family:
+    type: text
+    label: 'Site name font family'
+  slogan_font_family:
+    type: text
+    label: 'Slogan font family'
+  responsive_multilevelmenu_state:
+    type: integer
+    label: ''
+  bootstrap_css_cdn:
+    type: text
+    label: 'Bootstrap CSS CDN'
+  bootstrap_js_cdn:
+    type: text
+    label: 'Bootstrap JS CDN'
+  bootstrap_fa_cdn:
+    type: text
+    label: 'Bootstrap Fontawesome CDN'
+  credits_display:
+    type: boolean
+    label: ''

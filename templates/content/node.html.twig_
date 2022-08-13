@@ -1,0 +1,62 @@
+<article id="node-{{ node.nid }}" class="{{ classes }} clearfix node-mt" {{ attributes|without(classes) }}>
+  <div>
+    {% if display_submitted or (node.comment and (node.comment == COMMENT_NODE_OPEN or (node.comment ==
+      COMMENT_NODE_CLOSED and node.comment_count > 0))) %}
+      <div class="post-submitted-info">
+
+        {% if display_submitted %}
+          <div class="submitted-date">
+            <div class="month">{{ node.created|date('M') }}</div>
+            <div class="day">{{ node.created|date('d') }}</div>
+            <div class="year">{{ node.created|date('Y') }}</div>
+          </div>
+        {% endif %}
+        {% if (node.comment and (node.comment == COMMENT_NODE_OPEN or (node.comment == COMMENT_NODE_CLOSED and node.comment_count > 0))) %}
+          <div class="comments-count">
+            <i class="fa fa-comment"></i>
+            <div class="comment-counter">{{ node.comment_count }}</div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if display_submitted or (node.comment and (node.comment == COMMENT_NODE_OPEN or (node.comment == COMMENT_NODE_CLOSED and node.comment_count > 0))) %}
+    <div class="node-main-content custom-width clearfix">
+      {% else %}
+      <div class="node-main-content full-width clearfix">
+        {% endif %}
+        {% if title_prefix or title_suffix or display_submitted or not page %}
+          <header>
+            {{ title_prefix }}
+            {% if not page %}
+              <h2{{ title_attributes }}><a href="{{ node_url }}">{{ title }}</a></h2>
+            {% endif %}
+            {{ title_suffix }}
+
+            {% if display_submitted %}
+              <div class="submitted-user">
+                {{ 'By !username'|t({'!username': name}) }}
+              </div>
+            {% endif %}
+
+            {{ user_picture }}
+
+          </header>
+        {% endif %}
+
+        <div class="content" {{ content_attributes }}>
+          {#
+          We hide the comments and links now so that we can render them later.
+          #}
+          {{ content|without(['links', 'comments']) }}
+        </div>
+
+        {% if content.links %}
+          <footer>
+            {# { content.links }}  #}
+          </footer>
+        {% endif %}
+
+        {#    {{ content.comments }}#}
+      </div>
+
+</article>

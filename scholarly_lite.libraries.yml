@@ -1,0 +1,242 @@
+global:
+  css:
+    theme:
+      css/style.css: {}
+local:
+  css:
+    theme:
+      css/local.css: {}
+
+# IE
+# ====
+ie9:
+  css:
+    theme:
+      css/ie9.css: { browsers: { IE: 'lte IE 9', '!IE': false }}
+
+settings.form:
+  css:
+    theme:
+      css/scholarly_lite.settings.form.css: {}
+
+# Scripts
+# =======
+jquery.scrolltop:
+  header: true
+  js:
+    js/jquery.scroll-top.js: {}
+jquery.fixed-header:
+  header: true
+  js:
+    js/jquery.fixed-header.js: {}
+meanmenu:
+  css:
+    theme:
+      js/meanmenu/meanmenu.css: {}
+  js:
+    js/meanmenu/jquery.meanmenu.fork.js: { preprocess: false }
+mobile.meanmenu:
+  header: true
+  js:
+    js/jquery.mobile-meanmenu.js: {}
+
+# Libraries
+# =========
+bootstrap_css.3.2.0:
+  version: 3.2.0
+  css:
+    theme:
+      //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css: { type: external, minified: true }
+bootstrap_js.3.2.0:
+  version: 3.2.0
+  js:
+    //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js': { type: external, minified: true }
+bootstrap_css.3.3.6:
+  version: 3.3.6
+  css:
+    theme:
+      //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css: { type: external, minified: true }
+bootstrap_js.3.3.6:
+  version: 3.3.6
+  js:
+    //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js': { type: external, minified: true }
+bootstrap_fa.4.2.0:
+  css:
+    theme:
+      //maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css': { type: external, minified: true }
+bootstrap_fa.4.5.0:
+  css:
+    theme:
+      //maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css': { type: external, minified: true }
+
+# Styles
+# ======
+style.blue:
+  css:
+    theme:
+      css/style-blue.css: {}
+style.gray-green:
+  css:
+    theme:
+      css/style-gray-green.css: {}
+style.gray-orange:
+  css:
+    theme:
+      css/style-gray-orange.css: {}
+style.gray-pink:
+  css:
+    theme:
+      css/style-gray-pink.css: {}
+style.gray-purple:
+  css:
+    theme:
+      css/style-gray-purple.css: {}
+style.gray-red:
+  css:
+    theme:
+      css/style-gray-red.css: {}
+style.green:
+  css:
+    theme:
+      css/style-green.css: {}
+style.orange:
+  css:
+    theme:
+      css/style-orange.css: {}
+style.pink:
+  css:
+    theme:
+      css/style-pink.css: {}
+style.purple:
+  css:
+    theme:
+      css/style-purple.css: {}
+style.red:
+  css:
+    theme:
+      css/style-red.css: {}
+
+# Fonts
+# =====
+font.lato:
+  css:
+    theme:
+      fonts/lato-font.css: { preprocess: false }
+font.merriweather:
+  css:
+    theme:
+      fonts/merriweather-font.css: { preprocess: false }
+font.sourcesanspro:
+  css:
+    theme:
+      fonts/sourcesanspro-font.css: { preprocess: false }
+font.ubuntu:
+  css:
+    theme:
+      fonts/ubuntu-font.css: { preprocess: false }
+font.ptsans:
+  css:
+    theme:
+      fonts/ptsans-font.css: { preprocess: false }
+font.roboto:
+  css:
+    theme:
+      fonts/roboto-font.css: { preprocess: false }
+font.opensans:
+  css:
+    theme:
+      fonts/opensans-font.css: { preprocess: false }
+font.roboto-condensed:
+  css:
+    theme:
+      fonts/roboto-condensed-font.css: { preprocess: false }
+font.exo:
+  css:
+    theme:
+      fonts/exo-font.css: { preprocess: false }
+font.roboto-slab:
+  css:
+    theme:
+      fonts/roboto-slab-font.css: { preprocess: false }
+font.raleway:
+  css:
+    theme:
+      fonts/raleway-font.css: { preprocess: false }
+font.sourcecodepro:
+  css:
+    theme:
+      fonts/sourcecodepro-font.css: { preprocess: false }
+font.ptserif-blockquote:
+  css:
+    theme:
+      fonts/ptserif-blockquote-font.css: { preprocess: false }
+font.josefin-sans:
+  css:
+    theme:
+      fonts/josefin-sans-font.css: { preprocess: false }
+font.playfair-display:
+  css:
+    theme:
+      fonts/playfair-display-font.css: { preprocess: false }
+font.philosopher:
+  css:
+    theme:
+      fonts/philosopher-font.css: { preprocess: false }
+font.cinzel:
+  css:
+    theme:
+      fonts/cinzel-font.css: { preprocess: false }
+font.oswald:
+  css:
+    theme:
+      fonts/oswald-font.css: { preprocess: false }
+font.playfairdisplaysc:
+  css:
+    theme:
+      fonts/playfairdisplaysc-font.css: { preprocess: false }
+font.cabin:
+  css:
+    theme:
+      fonts/cabin-font.css: { preprocess: false }
+font.notosans:
+  css:
+    theme:
+      fonts/notosans-font.css: { preprocess: false }
+font.droidserif:
+  css:
+    theme:
+      fonts/droidserif-font.css: { preprocess: false }
+font.ptserif:
+  css:
+    theme:
+      fonts/ptserif-font.css: { preprocess: false }
+font.vollkorn:
+  css:
+    theme:
+      fonts/vollkorn-font.css: { preprocess: false }
+font.alegreya:
+  css:
+    theme:
+      fonts/alegreya-font.css: { preprocess: false }
+font.notoserif:
+  css:
+    theme:
+      fonts/notoserif-font.css: { preprocess: false }
+font.crimsontext:
+  css:
+    theme:
+      fonts/crimsontext-font.css: { preprocess: false }
+font.gentiumbookbasic:
+  css:
+    theme:
+      fonts/gentiumbookbasic-font.css: { preprocess: false }
+font.volkhov:
+  css:
+    theme:
+      fonts/volkhov-font.css: { preprocess: false }
+font.alegreyasc:
+  css:
+    theme:
+      fonts/alegreyasc-font.css: { preprocess: false }
+
+# stylesheets[all][] = bootstrap/css/bootstrap.css
