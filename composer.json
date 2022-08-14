@@ -1,0 +1,23 @@
+{
+    "name": "drupal/scholarly_lite",
+    "description": "A Bootstrap-based, responsive Drupal theme by <a href=\"http://www.morethanthemes.com/\" target=\"_blank\">More than (just) Themes</a> and contributors.",
+    "type": "drupal-theme",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://www.drupal.org/project/scholarly_lite",
+    "require": {
+        "twbs/bootstrap": "^5.0.0"
+    },
+    "authors": [{
+            "name": "Stavros Kounis",
+            "email": "skounis@gmail.com"
+        },
+        {
+            "name": "George Tsopouridis",
+            "email": "gtsopour@gmail.com"
+        },
+        {
+            "name": "Reva Gomes",
+            "email": "revagomes@gmail.com"
+        }
+    ]
+}
