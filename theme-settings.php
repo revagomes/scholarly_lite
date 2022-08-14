@@ -17,7 +17,7 @@ function scholarly_lite_form_system_theme_settings_alter(&$form, $form_state, $f
     return;
   }
 
-  $form['#attached']['library'] = 'settings.form';
+  $form['#attached']['library'] = 'scholarly_lite/settings.form';
 
   $form['mtt_settings'] = array(
     '#type' => 'fieldset',
